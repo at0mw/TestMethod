@@ -56,7 +56,8 @@ public class UnitTest1
         {
             {50, 35644},
             {20, 1},
-            {2, 1}
+            {2, 1},
+            {1, 1}
         };
 
         comparison = CompareDicts(dic1 , dic2);
@@ -87,12 +88,14 @@ public class UnitTest1
             double result = input / coin;
             if (result >= 1)
             {
-                long coinUsed = (long) result;
-                double remaining = result - coinUsed;
+                string s = result.ToString("0.00");
+                string[] parts = s.Split('.'); 
+                double coinUsed = int.Parse(parts[0]);
+                double remaining = int.Parse(parts[1]);
                 output.Add((int)coin, (int)coinUsed);
                 if (remaining >= 10)
                     remaining = remaining/ 10;
-                input = remaining * coin;
+                input = remaining/10 * coin;
             }
         }
         return output;
